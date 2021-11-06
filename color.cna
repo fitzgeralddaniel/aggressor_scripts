@@ -1,0 +1,30 @@
+#
+# Basic script adding a command to highlight beacons from command line.
+# This prevent you from having to right click and select color to highlight.
+# Author: Fitz
+#
+
+beacon_command_register("color", "Highlight the beacon a specific color", "Use: color <green/red/grey/yellow/blue/[none]>");
+
+alias color {
+    local('@entry');
+    @entry = @(bdata($1));
+    if(@entry && $2 eq "red") {
+        highlight("beacons", @entry, "bad");
+    }
+    else if(@entry && $2 eq "green") {
+        highlight("beacons", @entry, "good");
+    }
+    else if(@entry && $2 eq "yellow") {
+        highlight("beacons", @entry, "neutral");
+    }
+    else if(@entry && $2 eq "grey") {
+        highlight("beacons", @entry, "ignore");
+    }
+    else if(@entry && $2 eq "blue") {
+        highlight("beacons", @entry, "cancel");
+    }
+    else if(@entry && $2 eq "") {
+        highlight("beacons", @entry, "");
+    }
+};
