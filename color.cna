@@ -27,4 +27,8 @@ alias color {
     else if(@entry && $2 eq "") {
         highlight("beacons", @entry, "");
     }
+    else {
+        berror($1, "Please enter a valid color: red, green, yellow, grey, blue, or nothing.")
+        return;
+    }
 };
